@@ -1,0 +1,26 @@
+# Optional: a local PostgreSQL with pgvector, for development without a hosted database.
+#
+#   docker compose up -d
+#   then set in server/.env:
+#   DATABASE_URL=postgres://inkwell:inkwell@localhost:5432/inkwell
+#
+# These credentials are for a database that only listens on your own machine.
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: inkwell
+      POSTGRES_PASSWORD: inkwell
+      POSTGRES_DB: inkwell
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - inkwell-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U inkwell -d inkwell']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  inkwell-postgres:

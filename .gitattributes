@@ -1,0 +1,7 @@
+# Store and check out text files with LF line endings on every OS, so diffs
+# stay clean between Windows, the Render build and other contributors.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary

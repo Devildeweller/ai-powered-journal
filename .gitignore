@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# embedded development database (PGlite)
+server/.data/
+
+# logs and editor files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local tooling
+.claude/
+.vercel/
