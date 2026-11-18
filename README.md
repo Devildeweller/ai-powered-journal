@@ -1,4 +1,4 @@
-﻿# Inkwell: AI-Powered Journal Assistant
+# Inkwell: AI-Powered Journal Assistant
 
 A private journal with an AI companion that answers questions from what you actually wrote (RAG) and remembers durable facts about you across conversations (long-term memory).
 
@@ -7,11 +7,11 @@ A private journal with an AI companion that answers questions from what you actu
 ## How it works
 
 ```
-question â”€â–º date-range detection â”€â–º query embedding (Gemini)
-         â”€â–º hybrid search: pgvector cosine (HNSW) + Postgres full-text, fused with Reciprocal Rank Fusion
-         â”€â–º long-term memory recall (similarity Ã— importance Ã— recency)
-         â”€â–º context block â”€â–º Gemini â”€â–º answer streamed over SSE, with [n] citations linking to entries
-         â”€â–º afterwards: the model distils new memories (add / update / delete) in the background
+question ─► date-range detection ─► query embedding (Gemini)
+         ─► hybrid search: pgvector cosine (HNSW) + Postgres full-text, fused with Reciprocal Rank Fusion
+         ─► long-term memory recall (similarity × importance × recency)
+         ─► context block ─► Gemini ─► answer streamed over SSE, with [n] citations linking to entries
+         ─► afterwards: the model distils new memories (add / update / delete) in the background
 ```
 
 - **Indexing:** each entry is split into ~180-word overlapping chunks, each embedded with a header (date, title, tags) and stored in a `vector(1024)` column. Runs in a background queue; unfinished work is recovered on boot.
